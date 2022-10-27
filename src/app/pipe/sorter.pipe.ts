@@ -1,3 +1,5 @@
+import { stringify } from 'querystring';
+import { analyzeAndValidateNgModules } from '@angular/compiler';
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
@@ -11,9 +13,9 @@ export class SorterPipe implements PipeTransform {
    * @param key {string} - az objektumkulcs, amely alapján rendez
    * @returns {any[]} - a kulcs alapján rendezett tömb
    */
-  transform(value: any[], key: string): any[] {
+  transform(value: any[], key: string): any {
     // A KÖVETKEZŐ SORT TÁVOLÍTSD EL!!!
-    return value;
+
 
     /**
      * FELADAT!
@@ -21,7 +23,9 @@ export class SorterPipe implements PipeTransform {
      * térj vissza a value változóval.
      */
 
-
+    if (!Array.isArray(value) || !key) {
+      return value;
+    }
 
     /**
      * FELADAT!
@@ -32,8 +36,10 @@ export class SorterPipe implements PipeTransform {
      * 3. Térj vissza a két string localeCompare metódus által visszaadott
      *  összehasonlításának az eredményével.
      */
+    if (key) {
+      return value.sort((a: number, b:number) => a - b);
 
-
+  }
   }
 
 }

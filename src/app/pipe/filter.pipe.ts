@@ -1,4 +1,7 @@
+import { isNgTemplate } from '@angular/compiler';
+import { ValueTransformer } from '@angular/compiler/src/util';
 import { Pipe, PipeTransform } from '@angular/core';
+import { stringify } from 'querystring';
 
 @Pipe({
   name: 'filter'
@@ -13,7 +16,6 @@ export class FilterPipe implements PipeTransform {
    */
   transform(value: any[], phrase: string, key: string = ''): any {
     // A KÖVETKEZŐ SORT TÁVOLÍTSD EL!!!
-    return value;
 
     /**
      * FELADAT!
@@ -21,7 +23,9 @@ export class FilterPipe implements PipeTransform {
      * térj vissza a value változóval.
      */
 
-
+    if (!Array.isArray(value) || !phrase || !key) {
+      return value;
+    }
 
     /**
      * FELADAT!
@@ -31,6 +35,10 @@ export class FilterPipe implements PipeTransform {
      * TIPP: az összehasonlítás előtt a két értéket alakítsd kisbetűsre.
      */
 
+    phrase = phrase.toLowerCase();
+    key = key.toLowerCase();
+
+    return value.filter((item) => item[key]).includes(phrase);
 
   }
 
