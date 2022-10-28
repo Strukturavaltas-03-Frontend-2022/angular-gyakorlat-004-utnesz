@@ -17,7 +17,7 @@ export class AppComponent {
    * Hozd létre az alábbi változót.
    * @var phrase {string} - a keresőkifejezés
    */
-  phrase: string | any = '';
+  phrase: string = "";
 
   constructor(private userService: UserService) {}
 
@@ -35,6 +35,6 @@ export class AppComponent {
    * @returns {void}
    */
   onChangePhrase(event: Event): void {
-  this.phrase = (event.target as HTMLInputElement);
+  this.phrase = (event.target as HTMLInputElement).value;
   };
 }

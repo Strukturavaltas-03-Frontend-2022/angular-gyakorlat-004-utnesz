@@ -39,6 +39,6 @@
     Add át property-binding segítségével a phrase változót
     a component phraseString tulajdonságának.
     -->
-    <app-user-list [users]="userList" (delUser)="onDeleteUser($event)" [phraseString]="phrase"></app-user-list>
+    <app-user-list [phraseString]="phrase" [users]="userList" (delUser)="onDeleteUser($event)" ></app-user-list>
 </div>
 

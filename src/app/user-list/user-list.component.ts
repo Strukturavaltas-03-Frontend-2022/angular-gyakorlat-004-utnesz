@@ -23,7 +23,8 @@ export class UserListComponent implements OnInit {
    * Hozd létre az alábbi változót.
    * @var columnKey {string} - a rendezés oszlopának kulcsa
    */
-  columnKey: string = '';
+  columnKey: string = "";
+
   constructor() {}
 
   ngOnInit(): void {}
@@ -47,7 +48,7 @@ export class UserListComponent implements OnInit {
    * @param key {string} - a kapott kulcs
    * @returns {void}
    */
-  onColumnSelect(key: string = ""):void {
+  onColumnSelect(key: string):void {
     this.columnKey = key;
   }
 }

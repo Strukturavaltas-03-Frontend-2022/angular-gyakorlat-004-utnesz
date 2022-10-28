@@ -16,16 +16,23 @@ export class FilterPipe implements PipeTransform {
    */
   transform(value: any[], phrase: string, key: string = ''): any {
     // A KÖVETKEZŐ SORT TÁVOLÍTSD EL!!!
+    if(Array.isArray(value) === false || phrase === '' || key === '')
+    return value;
 
+    else {
+      return value.filter((item) =>
+        item[key]
+          .toString()
+          .toLocaleLowerCase()
+          .includes(phrase.toString().toLocaleLowerCase())
+      );
+    }
     /**
      * FELADAT!
      * Ellenőrzés: ha a value nem tömb, vagy nincs megadva a phrase vagy a key,
      * térj vissza a value változóval.
      */
 
-    if (!Array.isArray(value) || !phrase || !key) {
-      return value;
-    }
 
     /**
      * FELADAT!
@@ -35,11 +42,9 @@ export class FilterPipe implements PipeTransform {
      * TIPP: az összehasonlítás előtt a két értéket alakítsd kisbetűsre.
      */
 
-    phrase = phrase.toLowerCase();
-    key = key.toLowerCase();
 
-    return value.filter((item) => item[key]).includes(phrase);
 
   }
 
 }
+

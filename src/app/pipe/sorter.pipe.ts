@@ -13,7 +13,7 @@ export class SorterPipe implements PipeTransform {
    * @param key {string} - az objektumkulcs, amely alapján rendez
    * @returns {any[]} - a kulcs alapján rendezett tömb
    */
-  transform(value: any[], key: string): any {
+  transform(value: any[], key: string): any[] {
     // A KÖVETKEZŐ SORT TÁVOLÍTSD EL!!!
 
 
@@ -37,7 +37,7 @@ export class SorterPipe implements PipeTransform {
      *  összehasonlításának az eredményével.
      */
     if (key) {
-      return value.sort((a: number, b:number) => a - b);
+      return value.sort((a, b) => a - b);
 
   }
   }
