@@ -1,10 +1,8 @@
-import { isNgTemplate } from '@angular/compiler';
-import { ValueTransformer } from '@angular/compiler/src/util';
 import { Pipe, PipeTransform } from '@angular/core';
-import { stringify } from 'querystring';
+import { stringify } from '@angular/compiler/src/util';
 
 @Pipe({
-  name: 'filter'
+  name: 'filter',
 })
 export class FilterPipe implements PipeTransform {
   /**
@@ -14,11 +12,13 @@ export class FilterPipe implements PipeTransform {
    * @param key {string} - az objektumkulcs, amely alapján szűr
    * @returns {any[]} - a kifejezés alapján szűrt tömb
    */
-  transform(value: any[], phrase: string, key: string = ''): any {
+  transform(
+    value: any[],
+    phrase: string | HTMLInputElement,
+    key: string = ''
+  ): any {
     // A KÖVETKEZŐ SORT TÁVOLÍTSD EL!!!
-    if(Array.isArray(value) === false || phrase === '' || key === '')
-    return value;
-
+    if (Array.isArray(value) === false || !phrase || !key) return value;
     else {
       return value.filter((item) =>
         item[key]
@@ -33,7 +33,6 @@ export class FilterPipe implements PipeTransform {
      * térj vissza a value változóval.
      */
 
-
     /**
      * FELADAT!
      * Térj vissza a value.filter metódus eredményével (a value mindig tömb).
@@ -41,10 +40,6 @@ export class FilterPipe implements PipeTransform {
      * 2. A visszatérési érték true, ha valahol szerepel benne a phrase.
      * TIPP: az összehasonlítás előtt a két értéket alakítsd kisbetűsre.
      */
-
-
-
   }
-
 }
 

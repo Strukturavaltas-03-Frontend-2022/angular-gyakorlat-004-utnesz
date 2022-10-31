@@ -1,6 +1,7 @@
-import { stringify } from 'querystring';
+
 import { analyzeAndValidateNgModules } from '@angular/compiler';
 import { Pipe, PipeTransform } from '@angular/core';
+import { stringify } from '@angular/compiler/src/util';
 
 @Pipe({
   name: 'sorter'
@@ -23,9 +24,18 @@ export class SorterPipe implements PipeTransform {
      * térj vissza a value változóval.
      */
 
-    if (!Array.isArray(value) || !key) {
-      return value;
-    }
+    if (Array.isArray(value) === false || !key) return value;
+     else {
+      return value.sort((a, b) => {
+        if(typeof a[key] === 'number' && typeof a[key] === 'number'){
+          return a[key] - b[key];
+        } else {
+          const stringA = String(a[key]).toLowerCase();
+          const stringB = String(b[key]).toLowerCase();
+          return stringA.localeCompare(stringB);
+        }
+      })
+     }
 
     /**
      * FELADAT!
@@ -36,10 +46,7 @@ export class SorterPipe implements PipeTransform {
      * 3. Térj vissza a két string localeCompare metódus által visszaadott
      *  összehasonlításának az eredményével.
      */
-    if (key) {
-      return value.sort((a, b) => a - b);
 
-  }
   }
 
 }

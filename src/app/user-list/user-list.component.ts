@@ -12,7 +12,7 @@ export class UserListComponent implements OnInit {
    * Hozd létre az alábbi Input tulajdonságot.
    * @var phraseString {string} - Input tulajdonság
    */
-  @Input() phraseString: string = '';
+  @Input() phraseString: string | HTMLInputElement = '';
 
   @Input() users: User[] = [];
   @Output() delUser: EventEmitter<User> = new EventEmitter();
@@ -23,7 +23,7 @@ export class UserListComponent implements OnInit {
    * Hozd létre az alábbi változót.
    * @var columnKey {string} - a rendezés oszlopának kulcsa
    */
-  columnKey: string = "";
+  columnKey: string = '';
 
   constructor() {}
 
@@ -48,7 +48,7 @@ export class UserListComponent implements OnInit {
    * @param key {string} - a kapott kulcs
    * @returns {void}
    */
-  onColumnSelect(key: string):void {
+  onColumnSelect(key: string): void {
     this.columnKey = key;
   }
 }
